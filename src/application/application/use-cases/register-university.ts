@@ -4,9 +4,9 @@ import { Injectable } from '@nestjs/common';
 import { Either, left, right } from '@/core/either';
 import { University } from '../../enterprise/entities/university';
 import { UniversitiesRepository } from '../repositories/universities-repository';
-import { InstitutionAlreadyExistsError } from '@/universities/application/use-cases/errors/instituition-already-exists-error';
+import { InstitutionAlreadyExistsError } from '@/application/application/use-cases/errors/instituition-already-exists-error';
 import { UniversityProps } from '@/types/university';
-import { Slug } from '@/universities/enterprise/entities/value-objects/slug';
+import { Slug } from '@/application/enterprise/entities/value-objects/slug';
 interface RegisterUniversityUseCaseRequest extends UniversityProps {}
 
 type RegisterUniversityUseCaseResponse = Either<

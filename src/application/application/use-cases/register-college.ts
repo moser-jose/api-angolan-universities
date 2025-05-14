@@ -3,12 +3,12 @@ import { Injectable } from '@nestjs/common';
 
 import { Either, left, right } from '@/core/either';
 import { UniversitiesRepository } from '../repositories/universities-repository';
-import { InstitutionAlreadyExistsError } from '@/universities/application/use-cases/errors/instituition-already-exists-error';
-import { Slug } from '@/universities/enterprise/entities/value-objects/slug';
-import { College } from '@/universities/enterprise/entities/college';
+import { InstitutionAlreadyExistsError } from '@/application/application/use-cases/errors/instituition-already-exists-error';
+import { Slug } from '@/application/enterprise/entities/value-objects/slug';
+import { College } from '@/application/enterprise/entities/college';
 import { CollegeProps } from '@/types/college';
 import { CollegesRepository } from '../repositories/colleges-repository';
-import { InstitutionNotFoundError } from '@/universities/application/use-cases/errors/institution-not-found-error';
+import { InstitutionNotFoundError } from '@/application/application/use-cases/errors/institution-not-found-error';
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
 interface RegisterCollegeUseCaseRequest extends CollegeProps {}
 

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { CollegesRepository } from '@/universities/application/repositories/colleges-repository';
-import { College } from '@/universities/enterprise/entities/college';
-import { CollegeDetails } from '@/universities/enterprise/entities/value-objects/coleges-details';
-import { Slug } from '@/universities/enterprise/entities/value-objects/slug';
+import { CollegesRepository } from '@/application/application/repositories/colleges-repository';
+import { College } from '@/application/enterprise/entities/college';
+import { CollegeDetails } from '@/application/enterprise/entities/value-objects/coleges-details';
+import { Slug } from '@/application/enterprise/entities/value-objects/slug';
 
 export class InMemoryCollegesRepository implements CollegesRepository {
   public items: College[] = [];
@@ -44,7 +44,7 @@ export class InMemoryCollegesRepository implements CollegesRepository {
           longitude: college.longitude ?? 0,
           abbreviation: college.abbreviation ?? '',
           createdAt: college.createdAt,
-          updatedAt: college.updatedAt,
+          updatedAt: college.updatedAt
         })
       : null;
   }
