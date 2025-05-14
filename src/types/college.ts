@@ -1,5 +1,5 @@
 import { DataProps } from './data';
 
-export interface FacultyProps extends DataProps {
+export interface CollegeProps extends DataProps {
   universityId: string;
 }

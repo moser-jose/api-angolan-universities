@@ -1,14 +1,15 @@
 import { faker } from '@faker-js/faker';
 
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
-import { University } from '@/universities/enterprise/entities/university';
-import { UniversityProps } from '@/types/university';
-export function makeUniversity(
-  override: Partial<UniversityProps> = {},
+import { College } from '@/universities/enterprise/entities/college';
+import { CollegeProps } from '@/types/college';
+export function makeCollege(
+  override: Partial<CollegeProps> = {},
   id?: UniqueEntityID
-): University {
-  const university = University.create(
+): College {
+  const college = College.create(
     {
+      universityId: faker.string.uuid(),
       name: faker.lorem.word(),
       description: faker.lorem.word(),
       image: faker.image.url(),
@@ -53,5 +54,5 @@ export function makeUniversity(
     id
   );
 
-  return university;
+  return college;
 }

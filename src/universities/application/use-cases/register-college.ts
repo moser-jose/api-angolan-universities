@@ -2,23 +2,30 @@
 import { Injectable } from '@nestjs/common';
 
 import { Either, left, right } from '@/core/either';
-import { University } from '../../enterprise/entities/university';
 import { UniversitiesRepository } from '../repositories/universities-repository';
 import { InstitutionAlreadyExistsError } from '@/universities/application/use-cases/errors/instituition-already-exists-error';
-import { UniversityProps } from '@/types/university';
 import { Slug } from '@/universities/enterprise/entities/value-objects/slug';
-interface RegisterUniversityUseCaseRequest extends UniversityProps {}
+import { College } from '@/universities/enterprise/entities/college';
+import { CollegeProps } from '@/types/college';
+import { CollegesRepository } from '../repositories/colleges-repository';
+import { InstitutionNotFoundError } from '@/universities/application/use-cases/errors/institution-not-found-error';
+import { UniqueEntityID } from '@/core/entities/unique-entity-id';
+interface RegisterCollegeUseCaseRequest extends CollegeProps {}
 
-type RegisterUniversityUseCaseResponse = Either<
+type RegisterCollegeUseCaseResponse = Either<
   InstitutionAlreadyExistsError,
-  { institution: University }
+  { college: College }
 >;
 
 @Injectable()
-export class RegisterUniversityUseCase {
-  constructor(private universitiesRepository: UniversitiesRepository) {}
+export class RegisterCollegeUseCase {
+  constructor(
+    private collegesRepository: CollegesRepository,
+    private universitiesRepository: UniversitiesRepository
+  ) {}
 
   async execute({
+    universityId,
     name,
     email,
     image,
@@ -35,7 +42,7 @@ export class RegisterUniversityUseCase {
     latitude,
     longitude,
     abbreviation
-  }: RegisterUniversityUseCaseRequest): Promise<RegisterUniversityUseCaseResponse> {
+  }: RegisterCollegeUseCaseRequest): Promise<RegisterCollegeUseCaseResponse> {
     const slug = Slug.createFromText(name);
 
     const universityWithSameSlug = await this.universitiesRepository.findBySlug(
@@ -46,7 +53,13 @@ export class RegisterUniversityUseCase {
       return left(new InstitutionAlreadyExistsError(slug.value));
     }
 
-    const institution = University.create({
+    const university = await this.universitiesRepository.findById(universityId);
+
+    if (!university) {
+      return left(new InstitutionNotFoundError(universityId));
+    }
+
+    const college = College.create({
       name,
       email,
       description,
@@ -62,11 +75,12 @@ export class RegisterUniversityUseCase {
       ranking,
       latitude,
       longitude,
-      abbreviation
+      abbreviation,
+      universityId: new UniqueEntityID(universityId).toString()
     });
 
-    await this.universitiesRepository.create(institution);
+    await this.collegesRepository.create(college);
 
-    return right({ institution });
+    return right({ college });
   }
 }
