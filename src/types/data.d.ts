@@ -1,6 +1,6 @@
 export interface DataProps {
   name: string;
-  abbreviation: string;
+  abbreviation: string | null;
   type: string;
   founded: string | null;
   website: string | null;
