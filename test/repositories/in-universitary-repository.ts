@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { UniversitiesRepository } from '@/universities/application/repositories/universities-repository';
-import { University } from '@/universities/enterprise/entities/university';
-import { Slug } from '@/universities/enterprise/entities/value-objects/slug';
-import { UniversityDetails } from '@/universities/enterprise/entities/value-objects/university-details';
+import { UniversitiesRepository } from '@/application/application/repositories/universities-repository';
+import { University } from '@/application/enterprise/entities/university';
+import { Slug } from '@/application/enterprise/entities/value-objects/slug';
+import { UniversityDetails } from '@/application/enterprise/entities/value-objects/university-details';
 
 export class InMemoryUniversitiesRepository implements UniversitiesRepository {
   public items: University[] = [];

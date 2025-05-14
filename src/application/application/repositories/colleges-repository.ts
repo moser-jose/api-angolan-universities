@@ -1,5 +1,5 @@
-import { College } from '@/universities/enterprise/entities/college';
-import { CollegeDetails } from '@/universities/enterprise/entities/value-objects/coleges-details';
+import { College } from '@/application/enterprise/entities/college';
+import { CollegeDetails } from '@/application/enterprise/entities/value-objects/coleges-details';
 
 export abstract class CollegesRepository {
   abstract create(college: College): Promise<void>;

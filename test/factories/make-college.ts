@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
-import { College } from '@/universities/enterprise/entities/college';
+import { College } from '@/application/enterprise/entities/college';
 import { CollegeProps } from '@/types/college';
 export function makeCollege(
   override: Partial<CollegeProps> = {},

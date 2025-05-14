@@ -1,4 +1,4 @@
-import { UniversityDetails } from '@/universities/enterprise/entities/value-objects/university-details';
+import { UniversityDetails } from '@/application/enterprise/entities/value-objects/university-details';
 import { University } from '../../enterprise/entities/university';
 
 export abstract class UniversitiesRepository {
