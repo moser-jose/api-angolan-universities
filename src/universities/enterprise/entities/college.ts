@@ -1,21 +1,20 @@
-/* eslint-disable prettier/prettier */
 import { Entity } from '@/core/entities/entity';
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
 import { Optional } from '@/core/types/optional';
-import { FacultyProps } from '@/types/facultities';
+import { CollegeProps } from '@/types/college';
 
-export class Faculty extends Entity<FacultyProps> {
+export class College extends Entity<CollegeProps> {
   static create(
-    props: Optional<FacultyProps, 'createdAt'>,
+    props: Optional<CollegeProps, 'createdAt'>,
     id?: UniqueEntityID
-  ): Faculty {
-    const faculty = new Faculty(
+  ): College {
+    const college = new College(
       {
         ...props,
         createdAt: props.createdAt ?? new Date()
       },
       id
     );
-    return faculty;
+    return college;
   }
 }

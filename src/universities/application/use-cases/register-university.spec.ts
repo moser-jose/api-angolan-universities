@@ -15,7 +15,7 @@ describe('Register university', () => {
 
     expect(result.isRight()).toBe(true);
     expect(result.value).toEqual({
-      university: inMemoryUniversitiesRepository.items[0]
+      institution: inMemoryUniversitiesRepository.items[0]
     });
   });
 });

@@ -1,19 +1,16 @@
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
 import { Slug } from './slug';
-import { College } from '../college';
 import { Entity } from '@/core/entities/entity';
 import { DataProps } from '@/types/data';
-
-interface UniversityDetailsProps {
+interface CollegeDetailsProps {
   universityId: UniqueEntityID;
   slug: Slug;
-  colleges: College[];
 }
 
-export class UniversityDetails extends Entity<
-  DataProps & UniversityDetailsProps
+export class CollegeDetails extends Entity<
+  DataProps & CollegeDetailsProps
 > {
-  constructor(props: DataProps & UniversityDetailsProps) {
+  constructor(props: DataProps & CollegeDetailsProps) {
     super(props);
   }
 
@@ -65,14 +62,11 @@ export class UniversityDetails extends Entity<
     return this.props.updatedAt;
   }
 
-  get colleges() {
-    return this.props.colleges;
-  }
   get abbreviation() {
     return this.props.abbreviation;
   }
 
-  static create(props: DataProps & UniversityDetailsProps) {
-    return new UniversityDetails(props);
+  static create(props: DataProps & CollegeDetailsProps) {
+    return new CollegeDetails(props);
   }
 }
